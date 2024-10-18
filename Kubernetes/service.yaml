@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: starbucks
   labels:
     app: starbucks
+    app.kubernetes.io/instance: starbucks
+  name: starbucks
+  namespace: starbucks
 spec:
-  type: NodePort
   ports:
-  - port: 8080
-    targetPort: 8080
-    nodePort: 30001
+    - nodePort: 30001
+      port: 8080
+      targetPort: 8080
   selector:
     app: starbucks
+  type: NodePort
