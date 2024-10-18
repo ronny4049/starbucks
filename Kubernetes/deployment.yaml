@@ -1,9 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: starbucks
   labels:
     app: starbucks
+    app.kubernetes.io/instance: starbucks
+  name: starbucks
+  namespace: starbucks
 spec:
   replicas: 2
   selector:
@@ -15,7 +17,7 @@ spec:
         app: starbucks
     spec:
       containers:
-      - name: starbucks
-        image: ranjandalai4049/starbucks:latest
-        ports:
-        - containerPort: 8080
+        - image: ranjandalai4049/starbucks:latest
+          name: starbucks
+          ports:
+            - containerPort: 8080
